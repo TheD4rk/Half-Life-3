@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public LayerMask interactionMask;
     public float maxDistance;
     private GameObject objInHand;
+    public GameObject bombPrefab;
 
     // Update is called once per frame
     void Update()
@@ -44,7 +45,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             if (objInHand != null)
             {
@@ -54,6 +55,25 @@ public class Player : MonoBehaviour
 
                 objInHand = null;
             }
+            else
+            {
+                GameObject bomb = Instantiate(bombPrefab, hand.position, Quaternion.identity);
+                bomb.GetComponent<Rigidbody>().AddForce(cam.transform.forward * throwForce, ForceMode.Impulse);
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if (Time.timeScale == 1)
+            {
+                Time.timeScale = 0.25f;
+            }
+            else
+            {
+                Time.timeScale = 1;
+            }
+
+            
         }
     }
 }
