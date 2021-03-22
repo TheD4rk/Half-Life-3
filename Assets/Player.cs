@@ -14,6 +14,9 @@ public class Player : MonoBehaviour
     private GameObject objInHand;
     public GameObject bombPrefab;
 
+    public float grabDistance;
+    public float attractionForce;
+
     // Update is called once per frame
     void Update()
     {
@@ -37,10 +40,18 @@ public class Player : MonoBehaviour
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit, maxDistance, interactionMask))
                 {
-                    objInHand = hit.transform.gameObject;
-                    objInHand.transform.position = hand.position;
-                    objInHand.GetComponent<Rigidbody>().isKinematic = true;
-                    objInHand.transform.parent = hand;
+                    if (Vector3.Distance(hand.position, hit.transform.position) < grabDistance)
+                    {
+                        objInHand = hit.transform.gameObject;
+                        objInHand.transform.position = hand.position;
+                        objInHand.GetComponent<Rigidbody>().isKinematic = true;
+                        objInHand.transform.parent = hand;
+                    }
+                    else
+                    {
+                        Vector3 dir = Vector3.Normalize(hand.position - hit.transform.position);
+                        hit.transform.GetComponent<Rigidbody>().AddForce(dir * attractionForce, ForceMode.Impulse);
+                    }
                 }
             }
         }
