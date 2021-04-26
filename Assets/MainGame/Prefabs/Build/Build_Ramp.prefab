@@ -44,9 +44,9 @@ GameObject:
   - component: {fileID: 3174900172045253825}
   - component: {fileID: 5618395002837948187}
   - component: {fileID: 4259151631279501975}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Build_Ramp_Preview
-  m_TagString: Untagged
+  m_TagString: Destructable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -79,6 +79,7 @@ public class BotController : MonoBehaviour
 
     private void ShootPlayer()
     {
+        transform.LookAt(player.transform);
         gun.transform.localPosition = new Vector3(0.1f, 1.062f, 0.13f);
         gun.localEulerAngles = new Vector3(0, 0, 0);
         agent.SetDestination(transform.position);

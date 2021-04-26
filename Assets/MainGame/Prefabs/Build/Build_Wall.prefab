@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 2822027993457194786}
   - component: {fileID: 4482793523328599787}
   - component: {fileID: 1040459398270124740}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Build_Wall_Preview
-  m_TagString: Untagged
+  m_TagString: Destructable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
