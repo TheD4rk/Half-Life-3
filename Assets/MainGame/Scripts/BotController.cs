@@ -26,6 +26,8 @@ public class BotController : MonoBehaviour
 
     public LayerMask playerLayermask;
 
+    public Transform gun;
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -70,14 +72,19 @@ public class BotController : MonoBehaviour
 
     private void ChasePlayer()
     {
+        gun.transform.localPosition = new Vector3(0.038f, 1.022f, -0.189f);
+        gun.localEulerAngles = new Vector3(-50, -112, 0);
         agent.SetDestination(player.transform.position);
     }
 
     private void ShootPlayer()
     {
+        gun.transform.localPosition = new Vector3(0.1f, 1.062f, 0.13f);
+        gun.localEulerAngles = new Vector3(0, 0, 0);
         agent.SetDestination(transform.position);
         if (!attacking)
         {
+            gameObject.GetComponent<AudioSource>().Play();
             attacking = true;
             player.GetHit();
             Invoke("ResetAttack", shootCooldown);
